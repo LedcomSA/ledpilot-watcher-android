@@ -4,6 +4,7 @@ package com.example.ledpilotwatcher;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,10 +24,10 @@ public class BootWatcher extends BroadcastReceiver  {
 
         if(Intent.ACTION_BOOT_COMPLETED.equals(action))
         {
+            Intent serviceIntent = new Intent(context, WatchService.class);
             //startServiceDirectly(context);
-            Intent myStarterIntent = new Intent(context, WatchService.class);
-            myStarterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(myStarterIntent);
+            context.startService(serviceIntent);
+
 
         }
     }
